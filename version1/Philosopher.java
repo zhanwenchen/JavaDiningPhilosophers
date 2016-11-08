@@ -35,15 +35,12 @@ public class Philosopher extends Thread
 
         // pick up left chopstick
         synchronized (chopsticks.getLeft(id)) {
-          // philosopher has left chopsticksArray!
-          // her left chopsticksArray is no longer available
-          chopsticks.getLeft(id).availability = 0;
-          this.delay( this.randomInt() ); // simulate picking up
+          // philosopher has left chopstick!
+          //   this.delay( this.randomInt() ); // simulate picking up
           System.out.println("Philosopher " + this.id + " has left chopstick...");
           synchronized (chopsticks.getRight(id)) {
-              // philosopher has right chopsticksArray!
-              chopsticks.getRight(id).availability = 0;
-              this.delay( this.randomInt() ); // simulate picking up
+              // philosopher has right chopstick!
+              //   this.delay( this.randomInt() ); // simulate picking up
               System.out.println("Philosopher " + this.id + " has right chopstick...");
 
               // eat
@@ -51,12 +48,10 @@ public class Philosopher extends Thread
               this.delay( this.randomInt() ); // chew your food!
 
               // finished eating, so put down forks
-              chopsticks.getLeft(id).availability = 1;
-              this.delay( this.randomInt() ); // simulate putting down
+              //   this.delay( this.randomInt() ); // simulate putting down
               System.out.println("Philosopher " + this.id + " put down left chopstick...");
 
-              chopsticks.getRight(id).availability = 1;
-              this.delay( this.randomInt() ); // simulate putting down
+              //   this.delay( this.randomInt() ); // simulate putting down
               System.out.println("Philosopher " + this.id + " put down right chopstick...");
           }
         }

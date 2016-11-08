@@ -1,18 +1,13 @@
 public class Chopsticks {
   Chopstick[] chopsticksArray;
 
-  public class Chopstick {
-    int availability;
-    public Chopstick(int availability) {
-      this.availability = availability;
-    }
-  }
+  public class Chopstick {}
 
   public Chopsticks() {
     // Instance gets a new chopsticksArray
     this.chopsticksArray = new Chopstick[6];
     for (int i = 1; i <= 5; i++) {
-      chopsticksArray[i] = new Chopstick(1);  // initially each chopstick is available
+      chopsticksArray[i] = new Chopstick();  // initially each chopstick is available
     }
   }
 

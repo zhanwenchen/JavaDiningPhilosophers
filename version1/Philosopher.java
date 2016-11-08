@@ -33,34 +33,66 @@ public class Philosopher extends Thread
 
       while (true) {
 
-        // pick up left chopstick
-        synchronized (chopsticks.getLeft(id)) {
-          // philosopher has left chopstick!
-          //   this.delay( this.randomInt() ); // simulate picking up
-          System.out.println("Philosopher " + this.id + " has left chopstick...");
-          synchronized (chopsticks.getRight(id)) {
-              // philosopher has right chopstick!
+        if (this.id==5) {
+            // pick up left chopstick
+            synchronized (chopsticks.getRight(id)) {
+              // philosopher has left chopstick!
               //   this.delay( this.randomInt() ); // simulate picking up
               System.out.println("Philosopher " + this.id + " has right chopstick...");
+              synchronized (chopsticks.getLeft(id)) {
+                  // philosopher has right chopstick!
+                  //   this.delay( this.randomInt() ); // simulate picking up
+                  System.out.println("Philosopher " + this.id + " has left chopstick...");
 
-              // eat
-              System.out.println("Philosopher " + this.id + " eating...");
-              this.delay( this.randomInt() ); // chew your food!
+                  // eat
+                  System.out.println("Philosopher " + this.id + " eating...");
+                  this.delay( this.randomInt() ); // chew your food!
 
-              // finished eating, so put down forks
-              //   this.delay( this.randomInt() ); // simulate putting down
-              System.out.println("Philosopher " + this.id + " put down left chopstick...");
+                  // finished eating, so put down forks
+                  //   this.delay( this.randomInt() ); // simulate putting down
+                  System.out.println("Philosopher " + this.id + " put down left chopstick...");
 
-              //   this.delay( this.randomInt() ); // simulate putting down
-              System.out.println("Philosopher " + this.id + " put down right chopstick...");
-          }
+                  //   this.delay( this.randomInt() ); // simulate putting down
+                  System.out.println("Philosopher " + this.id + " put down right chopstick...");
+
+                  System.out.println("BURP! (Philosopher " + this.id + ")");
+
+                  // think
+                  System.out.println("Philosopher " + id + " thinking...");
+                  this.delay( this.randomInt() ); // can't rush genius!
+              }
+            }
+
+        } else {
+            // pick up left chopstick
+            synchronized (chopsticks.getLeft(id)) {
+              // philosopher has left chopstick!
+              //   this.delay( this.randomInt() ); // simulate picking up
+              System.out.println("Philosopher " + this.id + " has left chopstick...");
+              synchronized (chopsticks.getRight(id)) {
+                  // philosopher has right chopstick!
+                  //   this.delay( this.randomInt() ); // simulate picking up
+                  System.out.println("Philosopher " + this.id + " has right chopstick...");
+
+                  // eat
+                  System.out.println("Philosopher " + this.id + " eating...");
+                  this.delay( this.randomInt() ); // chew your food!
+
+                  // finished eating, so put down forks
+                  //   this.delay( this.randomInt() ); // simulate putting down
+                  System.out.println("Philosopher " + this.id + " put down left chopstick...");
+
+                  //   this.delay( this.randomInt() ); // simulate putting down
+                  System.out.println("Philosopher " + this.id + " put down right chopstick...");
+
+                  System.out.println("BURP! (Philosopher " + this.id + ")");
+
+                  // think
+                  System.out.println("Philosopher " + id + " thinking...");
+                  this.delay( this.randomInt() ); // can't rush genius!
+              }
+            }
         }
-
-        System.out.println("BURP! (Philosopher " + this.id + ")");
-
-        // think
-        System.out.println("Philosopher " + id + " thinking...");
-        this.delay( this.randomInt() ); // can't rush genius!
       }
     }
 

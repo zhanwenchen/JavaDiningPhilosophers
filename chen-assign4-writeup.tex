@@ -11,5 +11,35 @@
 
 \section{Version 1: Synchronized Code Blocks}
 
-\subsection{Deadlocks}
+\subsection{Implementation}
 
+\begin{enumerate}
+	\item [] I first studied the TableMon solution and implemented the Chopstick class in the fashion of fork. That is, Chopstick has an int availability variable and the code blocks would set that to 1 or 0. Then I realized it is in fact redundant because the synchronized keyword already implements a lock on the Chopstick object itself, therefore rendering the availability binary redundant. I therefore removed lines modifing chopstick[i].availability in the Philosopher class and made the Chopstick inner class completely empty.
+	
+\end{enumerate}
+
+\subsection{Deadlocks}
+\begin{enumerate}
+	\item [] When I first ran it, it deadlocked right away, but when I moved the "BURP," "thinking," and delay out of the synchronized block, nothing blocks. Meanwhile, the code is still liable for deadlocks, because monitors are like locks, and I did not implement any of the 3 solutions in Assignment 3, be it different picking-up order or a waiter.
+	\item [] To find out if it is opportunistic, I first ran 20 instances of the program at the same time for 10 minutes. None deadlocked.
+	\item [] Suspecting that it was the three lines, I moved the three lines back inside the synchronized block. It deadlocked right away. To find out if the culprit was the delay statement at the very end, I commented it out. The program again deadlocked right away. Commenting all three lines produced the same result.
+	\item [] I then moved just the delay statement outside the synchronized code block, and it worked again! To be sure, I commented out all three lines out and the program deadlocked right away. I concluded that having a delay statement outside the synchronized block is cheating, as it is not a dependable solution but one that that will make it work most of the time.
+	\item [] After realizing this, I implemented the one-phil-picks-up-differently solution as in Assignment 3 while leaving the delay statement commented out. 
+	\item [] It worked! Although Philosophers 5 and 4 dominated the execution, 1, 2, and 3 are still visible.
+\end{enumerate}
+
+\section{Version 2: Synchronized Methods}
+
+\subsection{Implementation}
+
+\begin{enumerate}
+	\item [] I implemented the sitDown() and standUp() methods in WaiterMon, much like getForks and putDownForks() are implemented in TableMon. 
+\end{enumerate}
+
+\subsection{Thread Safety}
+\begin{enumerate}
+	\item [] We now have a waiter that keeps count, whose max count is 4. In addition, getLeftFork() and getRightFork() are synchronized, so the entire program is thread-safe.
+	\item [] After running the program in 20 terminal windows for 10 minutes, no deadlock occurred and print statements are evenly distributed across philosophers. Success!
+\end{enumerate}
+
+\end{document}

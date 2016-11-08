@@ -17,9 +17,13 @@ public class Main
       // Create the philosophers' table (the monitor)
       TableMon table = new TableMon();
 
+      // Create the philosophers' waiter (another monitor)
+      // Only 4 philosophers can eat at the same time
+      WaiterMon waiter = new WaiterMon(4);
+
       // Create and start the philosophers (threads)
       for (int i=1; i <= 5; i++) {
-        new Philosopher(i, table).start();
+        new Philosopher(i, table, waiter).start();
       }
     }
 }

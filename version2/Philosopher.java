@@ -1,47 +1,59 @@
 /**
  * This class implements a dining philosopher.
- * 
+ *
  * @author Marc L. Smith
  * @version 1.0
  */
 public class Philosopher extends Thread
 {
-    // instance variables 
+    // instance variables
     private int id;          // Philosopher's unique identifier
     private TableMon table;  // Table where philosopher eats
+    private WaiterMon waiter;
 
     /**
-     * Constructor for Philosopher objects 
+     * Constructor for Philosopher objects
      */
-    public Philosopher(int id, TableMon table)
+    public Philosopher(int id, TableMon table, WaiterMon waiter)
     {
       // initialize instance variables
       this.id = id;
       this.table = table;
+      this.waiter = waiter;
     }
 
 
     /*
-     * A dining philosopher's behavior 
+     * A dining philosopher's behavior
      * is to eat and think -- forever!
-     */ 
+     */
     public void run()
     {
       // don't all start in order of creation!
       this.delay( this.randomInt() );
-	  
+
       while (true) {
 
+        // waiter seats philosopher
+        this.waiter.sitDown();
+
         // pick up forks
-        this.getForks();      // unsafe!
+        System.out.println("Philosopher " + this.id + " picked up her forks...");
+        this.getForks();
 
         // eat
         System.out.println("Philosopher " + this.id + " eating...");
         this.delay( this.randomInt() ); // chew your food!
 
-        // finished eating, so put down forks
-        this.putDownForks();
         System.out.println("BURP! (Philosopher " + this.id + ")");
+
+        // finished eating, so put down forks
+        System.out.println("Philosopher " + this.id + " put down her forks...");
+        this.putDownForks();
+
+
+        // waiter escorts philosopher away from the table
+        this.waiter.standUp();
 
         // think
         System.out.println("Philosopher " + id + " thinking...");
@@ -59,7 +71,7 @@ public class Philosopher extends Thread
       this.table.getRightFork(this.id);
       this.delay( this.randomInt() );   // simulate time to pick up fork
     }
-	
+
     /**
      * Philosopher puts down forks.
      */
@@ -88,4 +100,3 @@ public class Philosopher extends Thread
       } catch (InterruptedException ex) {}
     }
 }
-

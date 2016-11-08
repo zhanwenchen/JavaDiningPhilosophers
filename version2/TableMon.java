@@ -1,11 +1,11 @@
 /**
- * This class is an implementation of the table from the Dining 
- * Philosophers problem.  The activities of obtaining and releasing 
- * forks are implemented using synchronized methods -- Java's 
+ * This class is an implementation of the table from the Dining
+ * Philosophers problem.  The activities of obtaining and releasing
+ * forks are implemented using synchronized methods -- Java's
  * version of approximating a monitor.  Philosophers wait() for forks
  * on the table object's implicit wait queue; and upon releasing 
  * their forks, signal any waiting philosophers via notifyAll().
- * 
+ *
  * @author Marc L. Smith
  * @version 1.0
  */
@@ -60,12 +60,12 @@ public class TableMon
       System.out.println("Philosopher " + id + " picked up right fork!");
     }
 
-   /* 
+   /*
     * Effect of this method: philosopher puts down left fork.
     * Since method is synchronized, the body treats access to
     * fork as critical section.
     */
-    public synchronized void putDownLeftFork(int id) 
+    public synchronized void putDownLeftFork(int id)
     {
         // put down left fork
         fork[id] = 1;
@@ -74,13 +74,13 @@ public class TableMon
         // give the other philosophers a chance to eat
         notifyAll();
     }
-	
-   /* 
+
+   /*
     * Effect of this method: philosopher puts down left fork.
     * Since method is synchronized, the body treats access to
     * fork as critical section.
     */
-    public synchronized void putDownRightFork(int id) 
+    public synchronized void putDownRightFork(int id)
     {
         // put down right fork
         fork[id%5 + 1] = 1;
@@ -90,4 +90,3 @@ public class TableMon
         notifyAll();
     }
 }
-

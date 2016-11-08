@@ -1,10 +1,10 @@
 /**
- * This is the main program to demonstrate 
- * a monitor solution to the Dining Philosophers 
+ * This is the main program to demonstrate
+ * a monitor solution to the Dining Philosophers
  * problem in Java.  It uses threads and Java's
  * object synchronization mechanism.
- * 
- * @author Marc L. Smith
+ *
+ * @author Zhanwen Chen
  * @version 1.0
  */
 public class Main
@@ -23,4 +23,3 @@ public class Main
       }
     }
 }
-
